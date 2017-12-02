@@ -49,10 +49,10 @@ class SectorFive < Gosu::Window
 		@explosions.each do |explosion|
 			explosion.draw
 		end
-		@font.draw(@enemies_destroyed.to_s, 700, 20, 2)
-		@font.draw(@enemies_appeared.to_s, 700, 40, 2)
-		@font.draw(@ammo.to_s, 700, 80, 2)
-		@font.draw(@health.to_s, 700, 60, 2)
+		@font.draw("Points: #{@enemies_destroyed.to_s}", 700, 20, 2)
+		@font.draw("Enemies Appeared: #{@enemies_appeared.to_s}", 700, 40, 2)
+		@font.draw("Ammo: #{@ammo.to_s}", 700, 80, 2)
+		@font.draw("Health: #{@health.to_s}", 700, 60, 2)
 	end
 	
 	def update
