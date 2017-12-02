@@ -19,6 +19,7 @@ class SectorFive < Gosu::Window
 		@font = Gosu::Font.new(30)
 		@font2 = Gosu::Font.new(30)
 		@font3 = Gosu::Font.new(30)
+		@font4 = Gosu::Font.new(30)
 		@start_music.play(true)
 	end
 	
@@ -50,6 +51,7 @@ class SectorFive < Gosu::Window
 		end
 		@font.draw(@enemies_destroyed.to_s, 700, 20, 2)
 		@font.draw(@enemies_appeared.to_s, 700, 40, 2)
+		@font.draw(@ammo.to_s, 700, 80, 2)
 		@font.draw(@health.to_s, 700, 60, 2)
 	end
 	
@@ -84,6 +86,7 @@ class SectorFive < Gosu::Window
 		@explosions = []
 		@scene = :game
 		@health = 200
+		@ammo = 900
 		@enemies_appeared = 0
 		@enemies_destroyed = 0
 		@game_music = Gosu::Song.new('sounds/Cephalopod.ogg')
@@ -133,6 +136,7 @@ class SectorFive < Gosu::Window
 		@bullets.dup.each do |bullet|
 			@bullets.delete bullet unless bullet.onscreen?
 		end
+		
 		initialize_end(:count_reached) if @enemies_appeared > MAX_ENEMIES
 		@enemies.each do |enemy|
 			distance = Gosu.distance(enemy.x, enemy.y, @player.x, @player.y)
@@ -144,8 +148,13 @@ class SectorFive < Gosu::Window
 	
 	def button_down_game(id)
 		if id == Gosu::KbSpace
-			@bullets.push Bullet.new(self, @player.x, @player.y, @player.angle)
-			@shooting_sound.play(0.5)
+			if @ammo > 0
+				@bullets.push Bullet.new(self, @player.x, @player.y, @player.angle)
+				@ammo -= 1
+				@shooting_sound.play(0.5)
+			else
+				@ammo = 0
+			end
 		end
 	end
 	
@@ -175,6 +184,7 @@ class SectorFive < Gosu::Window
 		@message_font = Gosu::Font.new(28)
 		@credits = []
 		y = 700
+		@ammo = 900
 		File.open('credit.txt').each do |line|
 			@credits.push(Credit.new(self,line.chomp,100,y))
 			y+=30
