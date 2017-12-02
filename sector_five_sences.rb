@@ -6,10 +6,10 @@ require_relative 'explosion'
 require_relative 'credit'
 
 class SectorFive < Gosu::Window
-	WIDTH = 1000
-	HEIGHT = 800
-	MAX_ENEMIES = 300
-	ENEMY_FREQUENCY = 0.05
+	WIDTH = 1200
+	HEIGHT = 1000
+	MAX_ENEMIES = 500
+	ENEMY_FREQUENCY = 0.1
 	def initialize
 		super(WIDTH, HEIGHT)
 		self.caption = "Sector Five"
@@ -85,8 +85,8 @@ class SectorFive < Gosu::Window
 		@bullets = []
 		@explosions = []
 		@scene = :game
-		@health = 200
-		@ammo = 900
+		@health = 450
+		@ammo = 1000
 		@enemies_appeared = 0
 		@enemies_destroyed = 0
 		@game_music = Gosu::Song.new('sounds/Cephalopod.ogg')
@@ -150,6 +150,8 @@ class SectorFive < Gosu::Window
 		if id == Gosu::KbSpace
 			if @ammo > 0
 				@bullets.push Bullet.new(self, @player.x, @player.y, @player.angle)
+				@bullets.push Bullet.new(self, @player.x, @player.y, @player.angle + 5)
+				@bullets.push Bullet.new(self, @player.x, @player.y, @player.angle + 10)
 				@ammo -= 1
 				@shooting_sound.play(0.5)
 			else
