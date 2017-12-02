@@ -5,8 +5,8 @@ class Player
   attr_reader :x, :y, :angle, :radius
 	
 	def initialize(window)
-		@x = 200
-		@y = 200
+		@x = 600
+		@y = 500
 		@angle = 0
 		@velocity_x = 0
 		@velocity_y = 0
