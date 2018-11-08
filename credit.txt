@@ -5,6 +5,10 @@ Based on a Tutorial from
 Learn Game Programming with Ruby
 by Mark Sobkowicz
 
+---Note---
+Newer effects such as tri-bullets, larger screens, 
+and more starts were made by StevenCopeland alone.
+
 ---Images---
 Game art from OpenGameArt.org
 Licensed under Creative Commons: Public Domain CC0

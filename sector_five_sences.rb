@@ -93,13 +93,15 @@ class SectorFive < Gosu::Window
 		@game_music.play(true)
 		@explosion_sound = Gosu::Sample.new('sounds/explosion.ogg')
 		@shooting_sound = Gosu::Sample.new('sounds/shoot.ogg')
-		@reached_bottom = Gosu::Sample.new('bottom.ogg')
 	end
 	
 	def update_game
-		@player.turn_left if button_down?(Gosu::KbLeft)
-		@player.turn_right if button_down?(Gosu::KbRight)
-		@player.accelerate if button_down?(Gosu::KbUp)
+		@player.turn_left if button_down?(Gosu::KbA) # left
+		@player.turn_right if button_down?(Gosu::KbD) # right
+		@player.accelerate if button_down?(Gosu::KbW) # up
+		@player.turn_left if button_down?(Gosu::KbLeft) # left
+		@player.turn_right if button_down?(Gosu::KbRight) # right
+		@player.accelerate if button_down?(Gosu::KbUp) # up
 		@player.move
 		if rand < ENEMY_FREQUENCY
 			@enemies.push Enemy.new(self)
@@ -130,7 +132,6 @@ class SectorFive < Gosu::Window
 			if enemy.y > HEIGHT + enemy.radius
 				@enemies.delete enemy
 				@health -= 1
-				@reached_bottom.play
 			end
 		end
 		@bullets.dup.each do |bullet|
