@@ -13,7 +13,7 @@ class SectorFive < Gosu::Window
 	def initialize
 		super(WIDTH, HEIGHT)
 		self.caption = "Sector Five"
-		@background_image = Gosu::Image.new('images/start_screen.png')
+		@background_image = Gosu::Image.new('images/start_screen2.png')
 		@scene = :start
 		@start_music = Gosu::Song.new('sounds/Lost Frontier.ogg')
 		@font = Gosu::Font.new(30)
